@@ -10,3 +10,22 @@ module test();
 			$display("After swapping the numbers A:%d | B:%d",A,B);
 		end
 endmodule
+
+
+
+//=======================================================================//
+module swap_arith;
+  reg [7:0] a = 8'd10;
+  reg [7:0] b = 8'd20;
+
+  initial begin
+    $display("Before swap: a = %0d, b = %0d", a, b);
+
+    a = a + b;
+    b = a - b;
+    a = a - b;
+
+    $display("After swap:  a = %0d, b = %0d", a, b);
+  end
+endmodule
+
