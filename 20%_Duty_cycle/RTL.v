@@ -13,6 +13,35 @@ module duty_cycle(input clk,rst,output duty_out );
 
 endmodule
 
+
+
+//============================Efficient Code=========================
+module duty_cycle (
+    input  clk,
+    input  rst,
+    output reg duty_out
+);
+    reg [3:0] count;
+
+    always @(posedge clk) begin
+        if (rst)
+            count <= 4'd0;
+        else if (count == 4'd9)
+            count <= 4'd0;
+        else
+            count <= count + 1'b1;
+    end
+
+    always @(posedge clk) begin
+        if (rst)
+            duty_out <= 1'b0;
+        else
+            duty_out <= (count < 4'd2); // 20% duty
+    end
+
+endmodule
+
+
 //======================================================TB=================================================================================
 module tb;
 
